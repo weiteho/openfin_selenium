@@ -1,0 +1,12 @@
+{
+    "startup_app": {
+        "name": "gs_selenium",
+        "url": "http://localhost:8080/main.html",
+        "uuid": "gs_selenium",
+        "autoShow": false
+    },
+    "runtime": {
+        "arguments": "--v=1 --enable-chromium-window-alert --allow-http-screen-capture ",
+        "version": "9.61.33.32"
+    }
+}

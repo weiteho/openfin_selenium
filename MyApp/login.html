@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <style>
+        div {
+            -webkit-app-region: drag;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            border: 3px solid green;
+
+            background-color: steelblue;
+            color: white;
+            overflow: hidden;
+        }
+
+        td {
+            -webkit-app-region: no-drag;
+        }
+    </style>
+    <script>
+        function doCancel() {
+            fin.desktop.InterApplicationBus.send(fin.desktop.Application.getCurrent().uuid, "login_request", {
+                cancel: true
+            });
+
+        }
+
+        function doLogin() {
+            var username = document.getElementById("gs_username").value;
+            var password = document.getElementById("gs_password").value
+            fin.desktop.InterApplicationBus.send(fin.desktop.Application.getCurrent().uuid, "login_request", {
+                username, password
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            //OpenFin is ready
+            fin.desktop.main(() => {
+                var appUuid = fin.desktop.Application.getCurrent().uuid;
+
+                fin.desktop.InterApplicationBus.subscribe(appUuid, "login_result", (message, uuid, name) => {
+                    if (message.verified) {
+                        fin.desktop.Window.getCurrent().close();
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="login">
+        <table>
+            <th colspan="2">Login Window</th>
+            <tr>
+                <td>Username:</td>
+                <td>
+                    <input id="gs_username" type="text">
+                </td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <input id="gs_password" type="password">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" id="btnLogin" value="OK" onclick="doLogin()">
+                    <input type="button" id="btnCancel" value="Cancel" onclick="doCancel()">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+</html>

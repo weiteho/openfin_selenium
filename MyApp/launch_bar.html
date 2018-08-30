@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <style>
+        #content {
+            -webkit-app-region: drag;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            border: 2px solid black;
+
+            background-color: darkslategray;
+            color: white;
+            overflow: hidden;
+        }
+
+        #button_panel {
+            -webkit-app-region: no-drag;
+            margin: 15px;
+        }
+    </style>
+    <script>
+function doClose() {
+    fin.desktop.Window.getCurrent().close();
+}
+
+var winIndex = 0;
+
+function doOpenChildWin(url) {
+    var childWin = new fin.desktop.Window(
+            {
+                name: "child_win_" + winIndex++,
+                url: url,
+                defaultWidth: 640,
+                defaultHeight: 480,
+                frame: true,
+                autoShow: true
+            },
+            function () {
+            },
+            function (error) {
+                console.error("error creating child window: ", error);
+            });
+}
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <div id="button_panel">
+            <input type="button" id="btnOpenfin" value="OpenFin" onclick="doOpenChildWin('https://openfin.co')">
+            <input type="button" id="btnGoogle" value="Google" onclick="doOpenChildWin('https://www.google.com')">
+            <input type="button" id="btnCNN" value="CNN" onclick="doOpenChildWin('https://www.cnn.com')">
+            <input type="button" id="btnClose" value="Close" onclick="doClose()">
+        </div>
+    </div>
+</body>
+
+</html>
