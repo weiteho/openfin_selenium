@@ -1,4 +1,4 @@
-# opoenfin_selenium
+# openfin_selenium
 
 clone this repository
 
