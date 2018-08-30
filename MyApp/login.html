@@ -10,7 +10,6 @@
             right: 0px;
             bottom: 0px;
             border: 3px solid green;
-
             background-color: steelblue;
             color: white;
             overflow: hidden;
@@ -25,7 +24,6 @@
             fin.desktop.InterApplicationBus.send(fin.desktop.Application.getCurrent().uuid, "login_request", {
                 cancel: true
             });
-
         }
 
         function doLogin() {
@@ -40,7 +38,6 @@
             //OpenFin is ready
             fin.desktop.main(() => {
                 var appUuid = fin.desktop.Application.getCurrent().uuid;
-
                 fin.desktop.InterApplicationBus.subscribe(appUuid, "login_result", (message, uuid, name) => {
                     if (message.verified) {
                         fin.desktop.Window.getCurrent().close();

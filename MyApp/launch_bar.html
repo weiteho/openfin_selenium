@@ -10,7 +10,6 @@
             right: 0px;
             bottom: 0px;
             border: 2px solid black;
-
             background-color: darkslategray;
             color: white;
             overflow: hidden;
@@ -22,28 +21,28 @@
         }
     </style>
     <script>
-function doClose() {
-    fin.desktop.Window.getCurrent().close();
-}
+        function doClose() {
+            fin.desktop.Window.getCurrent().close();
+        }
 
-var winIndex = 0;
+        var winIndex = 0;
 
-function doOpenChildWin(url) {
-    var childWin = new fin.desktop.Window(
-            {
-                name: "child_win_" + winIndex++,
-                url: url,
-                defaultWidth: 640,
-                defaultHeight: 480,
-                frame: true,
-                autoShow: true
-            },
-            function () {
-            },
-            function (error) {
-                console.error("error creating child window: ", error);
-            });
-}
+        function doOpenChildWin(url) {
+            var childWin = new fin.desktop.Window(
+                {
+                    name: "child_win_" + winIndex++,
+                    url: url,
+                    defaultWidth: 640,
+                    defaultHeight: 480,
+                    frame: true,
+                    autoShow: true
+                },
+                function () {
+                },
+                function (error) {
+                    console.error("error creating child window: ", error);
+                });
+        }
     </script>
 </head>
 
