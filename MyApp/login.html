@@ -29,8 +29,8 @@
         }
 
         function doLogin() {
-            var username = document.getElementById("gs_username").value;
-            var password = document.getElementById("gs_password").value
+            var username = document.getElementById("openfin_username").value;
+            var password = document.getElementById("openfin_password").value
             fin.desktop.InterApplicationBus.send(fin.desktop.Application.getCurrent().uuid, "login_request", {
                 username, password
             });
@@ -58,13 +58,13 @@
             <tr>
                 <td>Username:</td>
                 <td>
-                    <input id="gs_username" type="text">
+                    <input id="openfin_username" type="text">
                 </td>
             </tr>
             <tr>
                 <td>Password:</td>
                 <td>
-                    <input id="gs_password" type="password">
+                    <input id="openfin_password" type="password">
                 </td>
             </tr>
             <tr>

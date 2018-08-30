@@ -3,7 +3,7 @@
   "version": "3.0.1",
   "private": true,
   "scripts": {
-    "testWJS": "mocha test/WebDriverJs/Mocha/gs_selenium.js"
+    "testWJS": "mocha test/WebDriverJs/Mocha/openfin_selenium.js"
   },
   "dependencies": {
     "selenium-webdriver": "^2.44.0",

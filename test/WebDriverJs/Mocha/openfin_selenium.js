@@ -9,7 +9,7 @@ config = require("../../config"),
 spawn = require('child_process').spawn;
 
 
-describe('GS testing with selenium-webdriver', function () {
+describe('openfin with selenium-webdriver', function () {
     "use strict";
 
     var client, notificationButton, cpuInfoButton, cpuInfoExitButton;
@@ -173,7 +173,7 @@ describe('GS testing with selenium-webdriver', function () {
 
     it('Switch to login window', function(done) {
         expect(client).to.exist;
-        switchWindowByName('gs_selenium_login', done);
+        switchWindowByName('openfin_selenium_login', done);
     });
 
     it('Verify OpenFin Runtime Version', function (done) {
@@ -191,10 +191,10 @@ describe('GS testing with selenium-webdriver', function () {
 
     it("Login", function (done) {
         expect(client).to.exist;
-        client.findElements(webdriver.By.id("gs_username")).then(function(result) {
-            result[0].sendKeys("gs_selenium");
+        client.findElements(webdriver.By.id("openfin_username")).then(function(result) {
+            result[0].sendKeys("openfin_selenium");
         });
-        client.findElements(webdriver.By.id("gs_password")).then(function(result) {
+        client.findElements(webdriver.By.id("openfin_password")).then(function(result) {
             result[0].sendKeys("test1234");
         });
         client.findElements(webdriver.By.id("btnLogin")).then(function(result) {
@@ -205,7 +205,7 @@ describe('GS testing with selenium-webdriver', function () {
 
     it('Switch to launch bar', function(done) {
         expect(client).to.exist;
-        switchWindowByName('gs_selenium_launch_bar', done);
+        switchWindowByName('openfin_selenium_launch_bar', done);
     });
 
     it("Open Google", function (done) {

@@ -1,8 +1,8 @@
 {
     "startup_app": {
-        "name": "gs_selenium",
+        "name": "openfin_selenium",
         "url": "http://localhost:8080/main.html",
-        "uuid": "gs_selenium",
+        "uuid": "openfin_selenium",
         "autoShow": false
     },
     "runtime": {

@@ -1,12 +1,12 @@
 <html>
 <script>
 
-    var loginWinName = "gs_selenium_login";
+    var loginWinName = "openfin_selenium_login";
 
     function showLaunchBar() {
         var launchBar = new fin.desktop.Window(
             {
-                name: "gs_selenium_launch_bar",
+                name: "openfin_selenium_launch_bar",
                 url: "http://localhost:8080/launch_bar.html",
                 defaultWidth: 375,
                 defaultHeight: 55,
@@ -51,7 +51,7 @@
                     if (message.cancel === true) {
                         fin.desktop.Application.getCurrent().close();
                     }
-                    else if (message.username === "gs_selenium" && message.password === "test1234") {
+                    else if (message.username === "openfin_selenium" && message.password === "test1234") {
                         fin.desktop.InterApplicationBus.send(appUuid, loginWinName, "login_result", {
                             verified: true
                         });
