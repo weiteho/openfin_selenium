@@ -3,11 +3,13 @@
   "version": "3.0.1",
   "private": true,
   "scripts": {
-    "testWJS": "mocha test/WebDriverJs/Mocha/openfin_selenium.js"
+    "testWJS": "mocha test/WebDriverJs/Mocha/openfin_selenium.js",
+    "testWIO": "mocha test/WebDriverIO/Mocha/openfin_selenium.js"
   },
   "dependencies": {
     "selenium-webdriver": "^2.44.0",
     "webdriverio": "^4.6.2",
+    "wdio-mocha-framework": "~0.6.3",
     "wd": "^0.3.10",
     "mocha": "^2.0.1",
     "chai": "^1.9.2",

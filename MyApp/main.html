@@ -1,75 +1,78 @@
 <html>
-<script>
 
-    var loginWinName = "openfin_selenium_login";
+<head>
+    <title>openfin_selenium_main</title>
+    <script>
+        var loginWinName = "openfin_selenium_login";
 
-    function showLaunchBar() {
-        var launchBar = new fin.desktop.Window(
-            {
-                name: "openfin_selenium_launch_bar",
-                url: "http://localhost:8080/launch_bar.html",
-                defaultWidth: 375,
-                defaultHeight: 55,
-                frame: false,
-                autoShow: true
-            },
-            function () {
-                launchBar.addEventListener("closed", () => {
-                    fin.desktop.Application.getCurrent().close();
-                });
-            },
-            function (error) {
-                console.error("error creating login window: ", error);
-            });
-    }
-
-    function showLoginWindow() {
-        var loginWin = new fin.desktop.Window(
-            {
-                name: loginWinName,
-                url: "http://localhost:8080/login.html",
-                defaultWidth: 300,
-                defaultHeight: 200,
-                frame: false
-            },
-            function () {
-                loginWin.show();
-            },
-            function (error) {
-                console.error("error creating login window: ", error);
-            });
-    }
-
-
-    document.addEventListener('DOMContentLoaded', () => {
-        //OpenFin is ready
-        fin.desktop.main(() => {
-            //register IAB topic to verify if login was successful
-            var appUuid = fin.desktop.Application.getCurrent().uuid;
-            fin.desktop.InterApplicationBus.subscribe(appUuid, loginWinName,
-                "login_request", (message, uuid, name) => {
-                    if (message.cancel === true) {
+        function showLaunchBar() {
+            var launchBar = new fin.desktop.Window(
+                {
+                    name: "openfin_selenium_launch_bar",
+                    url: "http://localhost:8080/launch_bar.html",
+                    defaultWidth: 375,
+                    defaultHeight: 55,
+                    frame: false,
+                    autoShow: true
+                },
+                function () {
+                    launchBar.addEventListener("closed", () => {
                         fin.desktop.Application.getCurrent().close();
-                    }
-                    else if (message.username === "openfin_selenium" && message.password === "test1234") {
-                        fin.desktop.InterApplicationBus.send(appUuid, loginWinName, "login_result", {
-                            verified: true
-                        });
-                        //intentionally let launch bar show up a bit late
-                        setTimeout(()=>{
-                            showLaunchBar();
-                        }, 5000)
-                    }
-                    else {
-                        fin.desktop.InterApplicationBus.send(appUuid, loginWinName, "login_result", {
-                            verified: false
-                        });
-                    }
+                    });
+                },
+                function (error) {
+                    console.error("error creating login window: ", error);
                 });
+        }
 
-            showLoginWindow();
+        function showLoginWindow() {
+            var loginWin = new fin.desktop.Window(
+                {
+                    name: loginWinName,
+                    url: "http://localhost:8080/login.html",
+                    defaultWidth: 300,
+                    defaultHeight: 200,
+                    frame: false
+                },
+                function () {
+                    loginWin.show();
+                },
+                function (error) {
+                    console.error("error creating login window: ", error);
+                });
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            //OpenFin is ready
+            fin.desktop.main(() => {
+                //register IAB topic to verify if login was successful
+                var appUuid = fin.desktop.Application.getCurrent().uuid;
+                fin.desktop.InterApplicationBus.subscribe(appUuid, loginWinName,
+                    "login_request", (message, uuid, name) => {
+                        if (message.cancel === true) {
+                            fin.desktop.Application.getCurrent().close();
+                        }
+                        else if (message.username === "openfin_selenium" && message.password === "test1234") {
+                            fin.desktop.InterApplicationBus.send(appUuid, loginWinName, "login_result", {
+                                verified: true
+                            });
+                            //intentionally let launch bar show up a bit late
+                            setTimeout(() => {
+                                showLaunchBar();
+                            }, 5000)
+                        }
+                        else {
+                            fin.desktop.InterApplicationBus.send(appUuid, loginWinName, "login_result", {
+                                verified: false
+                            });
+                        }
+                    });
+
+                showLoginWindow();
+            });
         });
-    });
-</script>
+    </script>
+</head>
 
 </html>
